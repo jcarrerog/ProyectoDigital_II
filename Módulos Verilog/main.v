@@ -16,7 +16,8 @@ module main #(
 	 output wire pwdn,
 	 output wire xclk,
     output wire done,
-	 output wire [3:0]led
+	    output wire [3:0]led,
+	    output wire [1:0]col
     ); 
 	 
 	 wire p_clock;
@@ -33,6 +34,10 @@ module main #(
 	 wire [4:0] R;
 	 wire [5:0] G;
 	 wire [4:0] B;
+	 wire lect;
+	 wire cam_ot;
+	 wire colr;
+	 wire tx;
 	 
 	 assign sioc = SCCB_SIOC_oe ? 1'b0 : 1'bZ;
     assign siod = SCCB_SIOD_oe ? 1'b0 : 1'bZ;
@@ -66,34 +71,53 @@ module main #(
         .SIOD_oe(SCCB_SIOD_oe)
         );
 		  
-		  camara_lect U4 (
-		  .p_clock(p_clock),
-	     .vsync(vsyinc),
-	     .href(href),
-	     .d(d),
+	 camara_lect U4 (
+	.p_clock(p_clock),
+	.vsync(vsyinc),
+	.href(href),
+	.d(d),
+        .lect(lect),
         .pixel_data(pixel_data),
         .pixel_valid(pixel_valid),
-	     .frame_done(led[3])	  
+	.frame_done(led[3])	  
 		  );
 		  
-		  cam_otr U5 (
-		  .clk(clk),
-		  .p_clock_c(p_clock_c),
-		  .rst_sw(rst_sw),
+	      cam_otr U5 (
+	     .clk(clk),
+	     .p_clock_c(p_clock_c),
+       	     .rst_sw(rst_sw),
 	     .pwdn_sw(pwdn_sw),
 	     .rst(rst),
 	     .pwdn(pwdn),
-		  .p_clock(p_clock),
+	     .cam_ot(cam_ot),
+             .p_clock(p_clock),
 	     .xclk(xclk)
 		  );
 		  
 		  color U6 (
 		  .p_clock(p_clock),
 	     .pixel_data(pixel_data),
+	     .colr(colr),
 	     .R(R),
 	     .G(G),
 	     .B(B),
 	     .led(led[2:0])
+		  );
+	
+	         Transm U7 (
+		  .p_clock(p_clock),
+	     .led(led[2:0]),
+	     .tx(tx),
+		  .col(col[1:0])  
+		  );
+		  
+		  Control U8 (
+		  .clk(clk),
+		  .start(start),
+		  .lect(lect),
+		  .cam_ot(cam_ot),
+		  .colr(colr),
+		  .tx(tx)		  
 		  );
 
 
