@@ -3,6 +3,7 @@ module camara_lect(
 	input vsync,
 	input href,
 	input [7:0] d,
+	input lect,
 	output reg [15:0] pixel_data =0,
 	output reg pixel_valid = 0,
 	output reg frame_done = 0
@@ -15,6 +16,9 @@ module camara_lect(
 	 
 	 always@(posedge p_clock)
 	begin 
+	
+	if(lect)
+	begin
 	
 	case(FSM_state)
 	
@@ -37,6 +41,7 @@ module camara_lect(
 	
 	
 	endcase
+	end
 	end
 
 endmodule
