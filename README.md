@@ -10,7 +10,7 @@
 Repositorio del proyecto final de la asignatura Electrónica Digital II de la Universidad Nacional de Colombia - Sede Bogotá. Aquí encontrará el proyecto del mini-carro propuesto para la asignatura, con la última versión de los códigos realizados en verilog y los destinados al microcontrolador ESP32 y los constrains requeridos para una Zybo Z7-10.
 
 
-![fotocarro2](https://user-images.githubusercontent.com/88418156/128122345-f258b9ef-d468-4219-ae76-9318639e9fd3.jpeg)
+![fotocarro2](https://user-images.githubusercontent.com/88418156/128122345-f258b9ef-d468-4219-ae76-9318639e9fd3.jpeg )
 
 
 
