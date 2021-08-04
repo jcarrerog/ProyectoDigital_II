@@ -4,8 +4,8 @@
 #include <WiFiClient.h>
 //#include <Wire.h>
 
-#define ssid1        "CLARO_1"
-#define password1    "@motas2021_@"
+#define ssid1        "_________"
+#define password1    "________"
 
 unsigned int distancia = 0;
 
